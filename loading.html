@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body class="bg-[#FAF9F6] m-0 flex flex-col items-center justify-center h-screen overflow-hidden">
+  <div id="preloader" class="flex flex-col items-center justify-center w-full h-full">
+    <div class="mb-4 text-center loader-text-container">
+      <h1 class="font-serif text-3xl md:text-5xl text-[#2D2D2D] tracking-wide mb-2" style="font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;">Paravur Handlooms</h1>
+      <p class="font-sans text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#C5A059]" style="font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">Waking the loom</p>
+    </div>
+    
+    <!-- Thread container -->
+    <div class="w-48 md:w-64 h-[1px] bg-[#2D2D2D]/10 relative mt-6">
+      <div id="preloader-thread" class="absolute top-0 left-0 h-full w-0 bg-[#C5A059]"></div>
+    </div>
+    
+    <!-- Percentage -->
+    <div id="preloader-percentage" class="font-sans text-xs text-[#555555] mt-4 font-light tracking-widest" style="font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">0%</div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const thread = document.getElementById('preloader-thread');
+      const percentage = document.getElementById('preloader-percentage');
+      
+      const tl = gsap.timeline({
+        onComplete: () => {
+          // Notify the parent window (index.html) that loading is complete
+          window.parent.postMessage('loaderComplete', '*');
+        }
+      });
+
+      tl.to(thread, {
+        width: '100%',
+        duration: 2.5,
+        ease: 'power2.inOut',
+        onUpdate: function() {
+          const progress = Math.round(this.progress() * 100);
+          percentage.innerText = progress + '%';
+        }
+      })
+      .to('.loader-text-container', {
+        opacity: 0,
+        y: -10,
+        duration: 0.5,
+        ease: 'power2.out'
+      }, "+=0.2")
+      .to([thread.parentElement, percentage], {
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.out'
+      }, "<");
+    });
+  </script>
+</body>
+</html>

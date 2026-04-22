@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Archives | Paravur Handlooms</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#FAF9F6] text-[#2D2D2D] font-sans antialiased">
+  
+  <div id="header-placeholder"></div>
+
+  <main class="min-h-screen bg-[#FAF9F6] pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      
+      <!-- Header Section -->
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-[#e5e4e7] pb-8">
+        <div class="max-w-2xl">
+          <h1 class="font-serif text-5xl md:text-7xl text-[#2D2D2D] mb-6">The Archives</h1>
+          <p class="font-sans text-lg text-[#555555]">
+            Explore our complete collection of Geographical Indication (GI) tagged handlooms, meticulously preserved and crafted by the master weavers of Chendamangalam.
+          </p>
+        </div>
+        <div class="mt-8 md:mt-0">
+          <a href="index.html" class="font-sans text-sm uppercase tracking-widest text-[#2D2D2D] border-b border-[#2D2D2D] pb-1 hover:text-[#C5A059] hover:border-[#C5A059] transition-colors flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Home
+          </a>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <!-- Injected via collection.js -->
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/collection.js"></script>
+</body>
+</html>
