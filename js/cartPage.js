@@ -33,7 +33,10 @@ function renderCartPage() {
   } else {
     cartContainer.classList.remove('hidden');
     emptyMessage.classList.add('hidden');
-    checkoutBtn.disabled = false;
+    if (checkoutBtn) {
+      checkoutBtn.disabled = false;
+      checkoutBtn.onclick = () => { window.location.href = 'checkout.html'; };
+    }
 
     cartContainer.innerHTML = cart.map(item => `
       <div class="flex gap-6 py-6 border-b border-[#e5e4e7] group">
