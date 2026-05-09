@@ -35,7 +35,14 @@ function renderCartPage() {
     emptyMessage.classList.add('hidden');
     if (checkoutBtn) {
       checkoutBtn.disabled = false;
-      checkoutBtn.onclick = () => { window.location.href = 'checkout.html'; };
+      checkoutBtn.disabled = false;
+      checkoutBtn.onclick = () => { 
+        if (!localStorage.getItem('ph_user')) {
+          window.location.href = 'login.html?redirect=checkout';
+        } else {
+          window.location.href = 'checkout.html'; 
+        }
+      };
     }
 
     cartContainer.innerHTML = cart.map(item => `
@@ -116,7 +123,7 @@ function renderRecommendations(currentCart) {
 
   recommendationsGrid.innerHTML = recommendations.map(product => `
     <div class="group flex flex-col h-full">
-      <div class="cursor-pointer">
+      <a href="product.html?id=${product.id}" class="cursor-pointer block group-hover:no-underline">
         <div class="aspect-[3/4] mb-4 overflow-hidden border border-transparent group-hover:border-[#C5A059] transition-colors bg-white shadow-sm">
            <img 
              src="${product.image}" 
@@ -131,7 +138,7 @@ function renderRecommendations(currentCart) {
         <span class="font-sans text-sm font-semibold text-[#2D2D2D] border-b border-transparent group-hover:border-[#2D2D2D] pb-0.5 transition-colors block mb-4">
           ${product.price}
         </span>
-      </div>
+      </a>
       <div class="mt-auto">
         <button onclick="addToCart(${product.id})" class="w-full font-sans text-xs uppercase tracking-widest text-[#2D2D2D] border border-[#2D2D2D] py-3 hover:bg-[#2D2D2D] hover:text-[#FAF9F6] transition-colors">
           Add to Cart

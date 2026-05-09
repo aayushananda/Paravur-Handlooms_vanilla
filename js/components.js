@@ -71,6 +71,9 @@ function renderHeader() {
           </nav>
           
           <div class="hidden lg:flex items-center justify-end gap-8">
+            <a id="header-auth-link" href="#" class="font-sans text-xs uppercase tracking-widest text-[#2D2D2D] hover:text-[#C5A059] transition-colors relative group nav-link">
+              Loading...
+            </a>
             <a href="cart.html" class="font-sans text-xs uppercase tracking-widest text-[#2D2D2D] hover:text-[#C5A059] transition-colors relative group flex items-center gap-1">
               Cart (<span id="cart-count">0</span>)
               <span class="absolute -bottom-2 left-0 w-0 h-px bg-[#C5A059] transition-all duration-300 group-hover:w-full"></span>
@@ -97,10 +100,30 @@ function renderHeader() {
       <div id="mobile-menu" class="lg:hidden transition-all duration-300 ease-in-out overflow-hidden bg-[#FAF9F6] max-h-0">
         <div class="px-4 py-6 space-y-4 text-center">
           ${mobileNavHtml}
+          <a id="mobile-auth-link" href="#" class="block font-serif text-xl text-[#2D2D2D] hover:text-[#C5A059] transition-colors mt-4">
+            Loading...
+          </a>
         </div>
       </div>
     </header>
   `;
+
+  // Determine auth state
+  const userStr = localStorage.getItem('ph_user');
+  const authText = userStr ? 'Account' : 'Login';
+  const authHref = userStr ? 'user.html' : 'login.html';
+  
+  const headerAuthLink = document.getElementById('header-auth-link');
+  if (headerAuthLink) {
+    headerAuthLink.textContent = authText;
+    headerAuthLink.href = authHref;
+  }
+  
+  const mobileAuthLink = document.getElementById('mobile-auth-link');
+  if (mobileAuthLink) {
+    mobileAuthLink.textContent = authText;
+    mobileAuthLink.href = authHref;
+  }
 
   // Mobile menu toggle
   const menuBtn = document.getElementById('mobile-menu-btn');

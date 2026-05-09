@@ -218,6 +218,11 @@ function formatExpiry(input) {
 function handlePayment(e) {
   e.preventDefault();
 
+  if (!e.target.checkValidity()) {
+    e.target.reportValidity();
+    return;
+  }
+
   const payBtn = document.getElementById('pay-btn');
   payBtn.disabled = true;
   payBtn.textContent = 'Processing…';
